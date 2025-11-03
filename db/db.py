@@ -1,20 +1,9 @@
-import sqlite3
 import psycopg
 from models import Cliente, Producto, Pedido
 from dotenv import load_dotenv
 
 class DB:
-    def __init__(self):
-        self.conn=sqlite3.connect("test.db")
-        self.conn.row_factory=sqlite3.Row
-        self.cursor=self.conn.cursor()
-        self.init_db() 
 
-    def init_db(self):
-        self.conn.execute("CREATE TABLE IF NOT EXISTS clientes(id_cliente INTEGER PRIMARY KEY,nombre TEXT,telefono INT)")
-        self.conn.execute("CREATE TABLE IF NOT EXISTS productos(producto_id INTEGER PRIMARY KEY,nombre TEXT,precio INT)")
-        self.conn.execute("CREATE TABLE IF NOT EXISTS pedidos(pedido_id INTEGER PRIMARY KEY,cliente_id INTEGER,producto_id INTEGER,cantidad INTEGER,FOREIGN KEY (cliente_id) REFERENCES clientes (id_cliente) FOREIGN KEY (producto_id) REFERENCES productos (producto_id))")
-        self.conn.commit()
 
 
 
